@@ -1,0 +1,8 @@
+.grand {
+  background: rgb(123, 177, 240);
+  background: linear-gradient(
+    0deg,
+    rgba(123, 177, 240, 1) 0%,
+    rgba(245, 208, 242, 1) 47%
+  );
+}
