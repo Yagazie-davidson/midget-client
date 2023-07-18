@@ -1,7 +1,31 @@
 import "./App.css";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 function Form() {
+  const baseUrl: string = import.meta.env.VITE_BASE_URL as string; //Import base URL from environment variables
+  const [url, setUrl] = useState(""); //Original input state
+  const [shortUrl, setShortUrl] = useState(null);
+  const [urlId, setUrlId] = useState(null);
+  // Handle fetch request
+  const handlePostUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault(); //Prvent on click refresh
+    try {
+      const res = await fetch(`${baseUrl}/urlshort`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          originalUrl: url,
+        }),
+      });
+      const data = await res.json();
+      setShortUrl(data.shortUrl);
+      setUrlId(data.urlId);
+    } catch (err) {
+      alert(err);
+      console.log(err);
+    }
+  };
   return (
     <>
       <form className="space-y-4">
@@ -10,6 +34,8 @@ function Form() {
           <input
             type="text"
             name="long-url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
             placeholder="https://youlongurl.com"
             className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           />
@@ -27,7 +53,7 @@ function Form() {
               something.com/
             </div>
             <div className="text-slate-400 px-3 py-2 bg-white border shadow-sm border-slate-300 w-full sm:text-sm rounded-r-lg">
-              eg. 94sQErMXW
+              {urlId ? urlId : "eg. 94sQErMXW"}
             </div>
           </div>
         </label>
@@ -35,6 +61,7 @@ function Form() {
           aria-label="button to shorten URL"
           className="bg-indigo-600 px-3 py-1 text-white rounded-md"
           whileHover={{ scale: 1.1 }}
+          onClick={handlePostUrl}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
           Submit
