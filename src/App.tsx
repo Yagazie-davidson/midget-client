@@ -64,7 +64,9 @@ function App() {
         }}
       >
         <div className="">
-          <h1 className="text-center text-lg mb-2">Midget- URL Shortner</h1>
+          <h1 className="text-center text-lg mb-2 font-bold">
+            Midget- URL Shortner
+          </h1>
           <Form />
         </div>
       </motion.div>
