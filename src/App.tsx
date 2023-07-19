@@ -6,7 +6,7 @@ import { ColorRing } from "react-loader-spinner";
 function Form() {
   const baseUrl: string = import.meta.env.VITE_BASE_URL as string; //Import base URL from environment variables
   const [url, setUrl] = useState(""); //Original input state
-  const [shortUrl, setShortUrl] = useState(null);
+  //! const [shortUrl, setShortUrl] = useState(null);
   const [urlId, setUrlId] = useState(null);
   const [loading, setLoading] = useState(false);
   // Handle fetch request
@@ -22,7 +22,7 @@ function Form() {
         }),
       });
       const data = await res.json();
-      setShortUrl(data.shortUrl);
+      //! setShortUrl(data.shortUrl);
       setUrlId(data.urlId);
     } catch (err) {
       alert(err);
@@ -54,10 +54,7 @@ function Form() {
             className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           /> */}
           <div className="flex">
-            <div className="bg-slate-200 flex items-center px-3">
-              something.com/
-            </div>
-            {loading && <p>Loading</p>}
+            <div className="bg-slate-200 flex items-center px-3">{baseUrl}</div>
             <div className="text-slate-400 px-3 py-2 bg-white border shadow-sm border-slate-300 w-full sm:text-sm rounded-r-lg">
               {urlId ? urlId : "eg. 94sQErMXW"}
             </div>
