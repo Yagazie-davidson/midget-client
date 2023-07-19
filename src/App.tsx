@@ -6,7 +6,7 @@ import { ColorRing } from "react-loader-spinner";
 function Form() {
   const baseUrl: string = import.meta.env.VITE_BASE_URL as string; //Import base URL from environment variables
   const [url, setUrl] = useState(""); //Original input state
-  const [shortUrl, setShortUrl] = useState(null);
+  //! const [shortUrl, setShortUrl] = useState(null);
   const [urlId, setUrlId] = useState(null);
   const [loading, setLoading] = useState(false);
   // Handle fetch request
@@ -22,7 +22,7 @@ function Form() {
         }),
       });
       const data = await res.json();
-      setShortUrl(data.shortUrl);
+      //! setShortUrl(data.shortUrl);
       setUrlId(data.urlId);
     } catch (err) {
       alert(err);
