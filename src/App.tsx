@@ -1,6 +1,7 @@
 import "./App.css";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { ColorRing } from "react-loader-spinner";
 
 function Form() {
   const baseUrl: string = import.meta.env.VITE_BASE_URL as string; //Import base URL from environment variables
@@ -64,12 +65,26 @@ function Form() {
         </label>
         <motion.button
           aria-label="button to shorten URL"
-          className="bg-indigo-600 px-3 py-1 text-white rounded-md"
+          className={`bg-indigo-600 px-3 py-1 text-white rounded-md ${
+            loading ? "cursor-not-allowed" : null
+          }`}
           whileHover={{ scale: 1.1 }}
           onClick={handlePostUrl}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          Submit
+          {loading ? (
+            <ColorRing
+              visible={true}
+              height="20"
+              width="30"
+              ariaLabel="blocks-loading"
+              wrapperStyle={{}}
+              wrapperClass="blocks-wrapper"
+              colors={["#ffff", "#ffff", "#ffff", "#ffff", "#ffff"]}
+            />
+          ) : (
+            "Submit"
+          )}
         </motion.button>
         {/* </button> */}
       </form>
