@@ -55,7 +55,6 @@ function Form() {
           /> */}
           <div className="flex">
             <div className="bg-slate-200 flex items-center px-3">{baseUrl}</div>
-            {loading && <p>Loading</p>}
             <div className="text-slate-400 px-3 py-2 bg-white border shadow-sm border-slate-300 w-full sm:text-sm rounded-r-lg">
               {urlId ? urlId : "eg. 94sQErMXW"}
             </div>
