@@ -17,6 +17,7 @@ function Form() {
     try {
       setLoading(true);
       setCopy(false);
+      setShortUrl(null);
       const res = await fetch(`${baseUrl}/urlshort`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -69,7 +70,11 @@ function Form() {
             </div> */}
             <div className="flex justify-between items-center text-slate-400 px-3 py-2 bg-white border shadow-sm border-slate-300 w-full sm:text-sm rounded-r-lg">
               {shortUrl ? (
-                <a href={shortUrl} className="underline text-black">
+                <a
+                  href={shortUrl}
+                  className="underline text-black"
+                  target="_blank"
+                >
                   {shortUrl}
                 </a>
               ) : (
