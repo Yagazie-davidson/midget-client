@@ -35,13 +35,13 @@ function Form() {
     <>
       <form className="space-y-4">
         <label htmlFor="long-link" className="block">
-          <span className="block text-slate-700">Enter You Long URL</span>
+          <span className="block text-slate-700">Enter Your Long URL</span>
           <input
             type="text"
             name="long-url"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            placeholder="https://youlongurl.com"
+            placeholder="https://yourlongurl.com"
             className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           />
         </label>
