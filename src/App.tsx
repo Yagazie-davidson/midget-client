@@ -57,20 +57,43 @@ function Form() {
             className="px-3 py-4 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           />
         </label>
-        <label htmlFor="short-url" className="block">
-          <span className="block text-slate-700">Your Midget URL</span>
-          <div className="flex justify-between items-center text-slate-400 bg-white border shadow-sm border-slate-300 w-full sm:text-sm rounded px-3 py-4">
-            <input
-              type="text"
-              name="short-url"
-              value={loadingDisplay}
-              readOnly
-              placeholder="https://yourlongurl.com"
-              className={`placeholder-slate-400 focus:outline-none focus:border-0 block w-full rounded-md sm:text-sm  ${
-                shortUrl && "underline text-black"
-              }`}
+        <motion.button
+          aria-label="button to shorten URL"
+          className={`bg-indigo-600 px-3 py-1 text-white rounded-md ${
+            loading ? "cursor-not-allowed" : null
+          }`}
+          whileHover={{ scale: 1.1 }}
+          onClick={handlePostUrl}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
+          {loading ? (
+            <ColorRing
+              visible={true}
+              height="20"
+              width="30"
+              ariaLabel="blocks-loading"
+              wrapperStyle={{}}
+              wrapperClass="blocks-wrapper"
+              colors={["#ffff", "#ffff", "#ffff", "#ffff", "#ffff"]}
             />
-            {shortUrl && (
+          ) : (
+            "Generate"
+          )}
+        </motion.button>
+        {shortUrl && (
+          <label htmlFor="short-url" className="block">
+            <span className="block text-slate-700">Your Midget URL</span>
+            <div className="flex justify-between items-center text-slate-400 bg-white border shadow-sm border-slate-300 w-full sm:text-sm rounded px-3 py-4">
+              <input
+                type="text"
+                name="short-url"
+                value={loadingDisplay}
+                readOnly
+                placeholder="https://yourlongurl.com"
+                className={`placeholder-slate-400 focus:outline-none focus:border-0 block w-full rounded-md sm:text-sm  ${
+                  shortUrl && "underline text-black"
+                }`}
+              />
               <CopyToClipboard
                 text={shortUrl}
                 onCopy={() => {
@@ -94,32 +117,9 @@ function Form() {
                   />
                 )}
               </CopyToClipboard>
-            )}
-          </div>
-        </label>
-        <motion.button
-          aria-label="button to shorten URL"
-          className={`bg-indigo-600 px-3 py-1 text-white rounded-md ${
-            loading ? "cursor-not-allowed" : null
-          }`}
-          whileHover={{ scale: 1.1 }}
-          onClick={handlePostUrl}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        >
-          {loading ? (
-            <ColorRing
-              visible={true}
-              height="20"
-              width="30"
-              ariaLabel="blocks-loading"
-              wrapperStyle={{}}
-              wrapperClass="blocks-wrapper"
-              colors={["#ffff", "#ffff", "#ffff", "#ffff", "#ffff"]}
-            />
-          ) : (
-            "Submit"
-          )}
-        </motion.button>
+            </div>
+          </label>
+        )}
         {/* </button> */}
       </form>
     </>
