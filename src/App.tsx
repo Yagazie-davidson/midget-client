@@ -17,6 +17,7 @@ function Form() {
     try {
       setLoading(true);
       setCopy(false);
+      setShortUrl(null);
       const res = await fetch(`${baseUrl}/urlshort`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
