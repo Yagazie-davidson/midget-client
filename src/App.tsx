@@ -1,12 +1,14 @@
 import "./App.css";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { ColorRing } from "react-loader-spinner";
-
+import { useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { LuClipboardList, LuClipboardCheck } from "react-icons/lu";
 function Form() {
   const baseUrl: string = import.meta.env.VITE_BASE_URL as string; //Import base URL from environment variables
   const [url, setUrl] = useState(""); //Original input state
   const [shortUrl, setShortUrl] = useState(null);
+  const [copy, setCopy] = useState(false);
   // const [urlId, setUrlId] = useState(null);
   const [loading, setLoading] = useState(false);
   // Handle fetch request
@@ -14,6 +16,7 @@ function Form() {
     e.preventDefault(); //Prvent on click refresh
     try {
       setLoading(true);
+      setCopy(false);
       const res = await fetch(`${baseUrl}/urlshort`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -31,17 +34,24 @@ function Form() {
       setLoading(false);
     }
   };
+  // Loading text display
+  let loadingDisplay: string;
+  if (loading) {
+    loadingDisplay = "Generating your link. Please wait ";
+  } else {
+    loadingDisplay = `eg. ${baseUrl}/94sQErMXW`;
+  }
   return (
     <>
       <form className="space-y-4">
         <label htmlFor="long-link" className="block">
-          <span className="block text-slate-700">Enter You Long URL</span>
+          <span className="block text-slate-700">Enter Your Long URL</span>
           <input
             type="text"
             name="long-url"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            placeholder="https://youlongurl.com"
+            placeholder="https://yourlongurl.com"
             className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           />
         </label>
@@ -57,13 +67,31 @@ function Form() {
             {/* <div className="bg-slate-200 flex items-center px-3">
               {baseUrl}/
             </div> */}
-            <div className="text-slate-400 px-3 py-2 bg-white border shadow-sm border-slate-300 w-full sm:text-sm rounded-r-lg">
+            <div className="flex justify-between items-center text-slate-400 px-3 py-2 bg-white border shadow-sm border-slate-300 w-full sm:text-sm rounded-r-lg">
               {shortUrl ? (
                 <a href={shortUrl} className="underline text-black">
                   {shortUrl}
                 </a>
               ) : (
-                `eg. ${baseUrl}/94sQErMXW`
+                loadingDisplay
+              )}
+              {shortUrl && (
+                <CopyToClipboard
+                  text={shortUrl}
+                  onCopy={() => {
+                    setCopy(true);
+                    alert("copied to clipbord");
+                  }}
+                >
+                  {copy ? (
+                    <LuClipboardCheck className="cursor-pointer" />
+                  ) : (
+                    <LuClipboardList
+                      className="cursor-pointer"
+                      aria-label="copy to clipboard"
+                    />
+                  )}
+                </CopyToClipboard>
               )}
             </div>
           </div>
