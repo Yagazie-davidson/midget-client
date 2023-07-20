@@ -66,8 +66,8 @@ function Form() {
               value={loadingDisplay}
               readOnly
               placeholder="https://yourlongurl.com"
-              className={`placeholder-slate-400 focus:outline-none focus:border-0 block w-full rounded-md sm:text-sm text-black ${
-                shortUrl && "underline"
+              className={`placeholder-slate-400 focus:outline-none focus:border-0 block w-full rounded-md sm:text-sm  ${
+                shortUrl && "underline text-black"
               }`}
             />
             {shortUrl && (
