@@ -4,12 +4,12 @@ import { ColorRing } from "react-loader-spinner";
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { LuClipboardList, LuClipboardCheck } from "react-icons/lu";
+
 function Form() {
   const baseUrl: string = import.meta.env.VITE_BASE_URL as string; //Import base URL from environment variables
   const [url, setUrl] = useState(""); //Original input state
-  const [shortUrl, setShortUrl] = useState(null);
+  const [shortUrl, setShortUrl] = useState("");
   const [copy, setCopy] = useState(false);
-  // const [urlId, setUrlId] = useState(null);
   const [loading, setLoading] = useState(false);
   // Handle fetch request
   const handlePostUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -17,7 +17,7 @@ function Form() {
     try {
       setLoading(true);
       setCopy(false);
-      setShortUrl(null);
+      setShortUrl("");
       const res = await fetch(`${baseUrl}/urlshort`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -27,7 +27,6 @@ function Form() {
       });
       const data = await res.json();
       setShortUrl(data.shortUrl);
-      // setUrlId(data.urlId);
     } catch (err) {
       alert(err);
       console.log(err);
@@ -39,6 +38,8 @@ function Form() {
   let loadingDisplay: string;
   if (loading) {
     loadingDisplay = "Generating your link. Please wait ";
+  } else if (shortUrl !== "") {
+    loadingDisplay = shortUrl;
   } else {
     loadingDisplay = `eg. ${baseUrl}/94sQErMXW`;
   }
@@ -53,52 +54,47 @@ function Form() {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://yourlongurl.com"
-            className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+            className="px-3 py-4 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
           />
         </label>
         <label htmlFor="short-url" className="block">
           <span className="block text-slate-700">Your Midget URL</span>
-          {/* <input
-            type="text"
-            name="short-url"
-            placeholder="eg. 94sQErMXW"
-            className="px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-          /> */}
-          <div className="flex">
-            {/* <div className="bg-slate-200 flex items-center px-3">
-              {baseUrl}/
-            </div> */}
-            <div className="flex justify-between items-center text-slate-400 px-3 py-2 bg-white border shadow-sm border-slate-300 w-full sm:text-sm rounded-r-lg">
-              {shortUrl ? (
-                <a
-                  href={shortUrl}
-                  className="underline text-black"
-                  target="_blank"
-                >
-                  {shortUrl}
-                </a>
-              ) : (
-                loadingDisplay
-              )}
-              {shortUrl && (
-                <CopyToClipboard
-                  text={shortUrl}
-                  onCopy={() => {
-                    setCopy(true);
-                    alert("copied to clipbord");
-                  }}
-                >
-                  {copy ? (
-                    <LuClipboardCheck className="cursor-pointer" />
-                  ) : (
-                    <LuClipboardList
-                      className="cursor-pointer"
-                      aria-label="copy to clipboard"
-                    />
-                  )}
-                </CopyToClipboard>
-              )}
-            </div>
+          <div className="flex justify-between items-center text-slate-400 bg-white border shadow-sm border-slate-300 w-full sm:text-sm rounded px-3 py-4">
+            <input
+              type="text"
+              name="short-url"
+              value={loadingDisplay}
+              readOnly
+              placeholder="https://yourlongurl.com"
+              className={`placeholder-slate-400 focus:outline-none focus:border-0 block w-full rounded-md sm:text-sm text-black ${
+                shortUrl && "underline"
+              }`}
+            />
+            {shortUrl && (
+              <CopyToClipboard
+                text={shortUrl}
+                onCopy={() => {
+                  setCopy(true);
+                  alert("copied to clipbord");
+                }}
+              >
+                {copy ? (
+                  <LuClipboardCheck
+                    className="cursor-pointer"
+                    aria-label="paste from clipboard"
+                    size="1rem"
+                    color="black"
+                  />
+                ) : (
+                  <LuClipboardList
+                    className="cursor-pointer"
+                    aria-label="copy to clipboard"
+                    size="1rem"
+                    color="black"
+                  />
+                )}
+              </CopyToClipboard>
+            )}
           </div>
         </label>
         <motion.button
@@ -134,7 +130,7 @@ function App() {
   return (
     <div className="grand h-screen  flex flex-col items-center place-content-center">
       <motion.div
-        className="bg-white rounded-2xl w-2/5 py-12 px-16"
+        className="bg-white rounded-2xl py-12 px-10 sm:px-16 w-80 sm:w-2/4"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
