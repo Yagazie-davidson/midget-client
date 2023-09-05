@@ -4,10 +4,23 @@
     <meta charset="UTF-8" />
     <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1pZGdldCIsCiAgInNob3J0X25hbWUiOiAiTWlkZ2V0IiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNmZmZmZmYiLAogICJsYW5nIjogImVuIiwKICAic2NvcGUiOiAiLyIsCiAgImRlc2NyaXB0aW9uIjogIk15IEF3ZXNvbWUgQXBwIGRlc2NyaXB0aW9uIiwKICAidGhlbWVfY29sb3IiOiAiI2ZmZmZmZiIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogIi9pY29ucy9tYW5pZmVzdC1pY29uLTE5Mi5tYXNrYWJsZS5wbmciLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiL2ljb25zL21hbmlmZXN0LWljb24tMTkyLm1hc2thYmxlLnBuZyIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInB1cnBvc2UiOiAibWFza2FibGUiCiAgICB9LAogICAgewogICAgICAic3JjIjogIi9pY29ucy9tYW5pZmVzdC1pY29uLTUxMi5tYXNrYWJsZS5wbmciLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiL2ljb25zL21hbmlmZXN0LWljb24tNTEyLm1hc2thYmxlLnBuZyIsCiAgICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInB1cnBvc2UiOiAibWFza2FibGUiCiAgICB9CiAgXQp9Cg==" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="This is a web app to shorten long URLs" />
     <title>Midget- URL Shortner</title>
-    <script type="module" crossorigin src="/assets/index-ea3aba62.js"></script>
-    <link rel="stylesheet" href="/assets/index-930bca21.css">
-  </head>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js", { scope: "/" });
+        });
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-10099431.js"></script>
+    <link rel="stylesheet" href="/assets/index-702933b0.css">
+  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
     
