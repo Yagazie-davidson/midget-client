@@ -47,5 +47,5 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
 };
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), VitePWA(manifestForPlugIn)],
 });
