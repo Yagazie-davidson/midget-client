@@ -34,5 +34,8 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.0",
     "vite-plugin-pwa": "^0.16.4"
+  },
+  "engines": {
+    "node": ">=14.20.1"
   }
 }
