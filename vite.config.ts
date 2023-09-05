@@ -8,8 +8,8 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        name: "midget-client",
-        short_name: "midget-client",
+        name: "Midget",
+        short_name: "Midget",
         start_url: "/",
         display: "standalone",
         background_color: "#ffffff",
