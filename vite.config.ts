@@ -16,28 +16,24 @@ export default defineConfig({
         display: "standalone",
         icons: [
           {
-            src: "./public/iocns/manifest-icon-192.maskable.png",
+            src: "/public/icon-192.png",
             sizes: "192x192",
             type: "image/png",
-            purpose: "any",
           },
           {
-            src: "./public/iocns/manifest-icon-192.maskable.png",
-            sizes: "192x192",
+            src: "./public/icon-256.png",
+            sizes: "256x256",
             type: "image/png",
-            purpose: "maskable",
           },
           {
-            src: "./public/iocns/manifest-icon-512.maskable.png",
+            src: "./public/icon-384.png",
+            sizes: "384x384",
+            type: "image/png",
+          },
+          {
+            src: "./public/icon-512.png",
             sizes: "512x512",
             type: "image/png",
-            purpose: "any",
-          },
-          {
-            src: "./public/iocns/manifest-icon-512.maskable.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "maskable",
           },
         ],
         background_color: "#ffffff",
