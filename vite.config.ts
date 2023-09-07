@@ -10,28 +10,28 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
-        name: "midget-client",
-        short_name: "midget-client",
+        name: "Midget",
+        short_name: "Midget",
         start_url: "/",
         display: "standalone",
         icons: [
           {
-            src: "/public/icon-192.png",
+            src: "https://i.ibb.co/5xcDvpz/icon-192.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "./public/icon-256.png",
+            src: "https://i.ibb.co/k8DSbbV/icon-256.png",
             sizes: "256x256",
             type: "image/png",
           },
           {
-            src: "./public/icon-384.png",
+            src: "https://i.ibb.co/ZVpfZJV/icon-384.png",
             sizes: "384x384",
             type: "image/png",
           },
           {
-            src: "./public/icon-512.png",
+            src: "https://i.ibb.co/8rq1W00/icon-512.png",
             sizes: "512x512",
             type: "image/png",
           },
